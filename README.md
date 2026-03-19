@@ -84,6 +84,8 @@ Custom MDP environment with:
 ---
 
 ## File Structure
+
+```
 ├── mdp_base.py
 ├── wumpus_mdp.py
 ├── wumpus_demo.py
@@ -94,8 +96,7 @@ Custom MDP environment with:
 ├── comparison.py
 ├── bandit_simulator.py
 └── bandit_ucb_vs_epsilon.py
-
-
+```
 ---
 
 ## Tech Stack
