@@ -1,78 +1,117 @@
 # Reinforcement Learning & MDP Algorithms
 
-Implementation and comparison of classical reinforcement learning and Markov Decision Process algorithms in Python. Tested on Grid World and Wumpus World environments.
+## Highlights
+- Implemented 8 reinforcement learning and MDP algorithms from scratch  
+- Compared tabular and approximate methods across multiple environments  
+- Analyzed convergence behavior and exploration strategies in stochastic settings  
 
 ---
 
 ## Overview
+This project implements and benchmarks classical reinforcement learning and Markov Decision Process (MDP) algorithms in Python.
 
-This project implements and benchmarks six algorithms for sequential decision-making under uncertainty:
+The goal is to understand how different learning paradigms — exact methods, model-free learning, and function approximation — perform under uncertainty and stochastic transitions.
 
-- **Value Iteration** — exact MDP solver using dynamic programming
-- **Modified Policy Iteration** — hybrid of policy evaluation and improvement
-- **Q-Learning** — off-policy tabular RL
-- **SARSA** — on-policy tabular RL
-- **Approximate Q-Learning** — Q-learning with linear function approximation
-- **Approximate SARSA** — SARSA with linear function approximation
-- **Direct Utility Estimation** — model-free value learning from experience
-- **UCB vs ε-Greedy** — multi-armed bandit exploration strategies
+Algorithms implemented:
+- Value Iteration  
+- Modified Policy Iteration  
+- Q-Learning  
+- SARSA  
+- Approximate Q-Learning  
+- Approximate SARSA  
+- Direct Utility Estimation  
+- UCB vs ε-Greedy (multi-armed bandits)  
+
+---
+
+## Why it matters
+Sequential decision-making under uncertainty is a core problem in many real-world systems.
+
+This project demonstrates how different reinforcement learning strategies handle:
+- Exploration vs exploitation trade-offs  
+- Convergence speed vs stability  
+- Generalization with function approximation  
+
+Applications include:
+- Recommendation systems  
+- Online advertising optimization  
+- Robotics and control systems  
 
 ---
 
 ## Environments
 
 ### Grid World
-Stochastic grid navigation with slip probability. Tested on:
-- 4×3 world (classic textbook layout)
-- 10×10 world with varied goal positions
+Stochastic grid navigation with slip probability.
+
+- 4×3 world (classic benchmark)
+- 10×10 world with varied goal positions  
+
+---
 
 ### Wumpus World
-Custom MDP with pits, Wumpus agents, gold, and immunity objects. Supports stochastic transitions (80/10/10 move probabilities).
+Custom MDP environment with:
+- Pits, Wumpus agents, gold, immunity objects  
+- Stochastic transitions (80/10/10 probabilities)  
 
 ---
 
 ## Results
 
-### 4×3 Grid World — Learning Curves
+### Key Findings
+- Value Iteration and Policy Iteration converge fastest but require full model knowledge  
+- Q-Learning and SARSA successfully learn optimal policies from experience  
+- Function approximation improves scalability but introduces instability  
+- UCB outperforms ε-Greedy in early exploration efficiency  
+
+---
+
+### Learning Curves
 ![4x3 Comparison](Comparison_on_4_3_Grid_World.png)
 
-### 10×10 Grid World — Learning Curves
 ![10x10 Comparison](Comparison_on_10_10.png)
 
-### 10×10 Grid World — Policy Visualization (6 methods)
+---
+
+### Policy Visualization
 ![6 Methods](Comparison_with_6_methods.png)
 
-### Reward Curves — 5×5 Grid
+---
+
+### Reward Curves
 ![Reward 5x5](Reward_5_5.png)
 
 ---
 
 ## File Structure
+├── mdp_base.py
+├── wumpus_mdp.py
+├── wumpus_demo.py
+├── grid_world.py
+├── value_iteration.py
+├── rl_agents.py
+├── direct_utility.py
+├── comparison.py
+├── bandit_simulator.py
+└── bandit_ucb_vs_epsilon.py
 
-```
-├── mdp_base.py                  # Abstract MDP base classes
-├── wumpus_mdp.py                # Wumpus World MDP implementation
-├── wumpus_demo.py               # Wumpus World demo script
-├── grid_world.py                # Grid World environment
-├── value_iteration.py           # Value Iteration + Modified Policy Iteration
-├── rl_agents.py                 # Q-Learning, SARSA, Approx Q-Learning, Approx SARSA
-├── direct_utility.py            # Direct Utility + Function Approximation agents
-├── comparison.py                # Full 6-method comparison and visualization
-├── bandit_simulator.py          # Multi-armed bandit simulator
-└── bandit_ucb_vs_epsilon.py     # UCB vs ε-Greedy bandit experiment
-```
+
+---
+
+## Tech Stack
+Python · NumPy · Matplotlib · tqdm · typing  
 
 ---
 
 ## Key Design Patterns
-
-- `FiniteStateMDP` abstract base class enforces consistent MDP interface across environments
-- `TabularAgent` base class shared by Q-Learning and SARSA with epsilon-greedy action selection
-- `ApproximateAgent` base class for function approximation methods with shared feature engineering
-- All agents support plug-and-play comparison via unified `train_agent` / `compare_agents` interface
+- Unified `FiniteStateMDP` interface across environments  
+- Shared base classes for tabular and approximate agents  
+- Modular training and evaluation pipeline (`train_agent`, `compare_agents`)  
 
 ---
 
-## Libraries
-
-`numpy` · `matplotlib` · `enum` · `tqdm` · `typing`
+## Key Takeaways
+- Exact methods are optimal but not scalable  
+- Model-free methods learn from interaction without environment knowledge  
+- Function approximation enables scaling but requires careful tuning  
+- Exploration strategy significantly impacts early learning performance  
